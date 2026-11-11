@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasktap | Local Gig Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .glow-bg {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(76, 29, 149, 0.15) 0%, rgba(15, 23, 42, 1) 50%);
+            z-index: -1;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-50 min-h-screen flex flex-col relative z-0">
+    <!-- Ambient Background -->
+    <div class="glow-bg"></div>
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[128px] opacity-20 z-[-1]"></div>
+    <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[128px] opacity-20 z-[-1]"></div>
+
+    <!-- Navbar -->
+    <nav class="container mx-auto px-6 py-8 flex justify-between items-center z-10 relative">
+        <div class="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 cursor-pointer" onclick="switchView('home')">Tasktap</div>
+        <div class="space-x-6 text-sm font-medium text-slate-300">
+            <button onclick="switchView('home')" class="hover:text-white transition">Home</button>
+            <button onclick="switchView('about')" class="hover:text-white transition">About Us</button>
+        </div>
+    </nav>
+
+    <!-- MAIN VIEW (HOME) -->
+    <main id="home-view" class="container mx-auto px-6 py-12 flex-grow flex flex-col items-center justify-center z-10 relative block">
+        
+        <header class="text-center max-w-3xl mb-16">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-white">Get everyday tasks done, <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">or earn cash doing them.</span></h1>
+            <p class="text-xl text-slate-400">Connecting busy residents with motivated local teenagers for yard work, cleaning, and micro-tasks. No commissions. Just community.</p>
+        </header>
+
+        <section class="grid md:grid-cols-2 gap-8 w-full max-w-5xl">
+            <!-- Resident Card -->
+            <div class="glass-card p-10 rounded-3xl shadow-2xl flex flex-col justify-between transition hover:-translate-y-1 duration-300">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="ph-fill ph-house text-3xl text-blue-400"></i>
+                        <h2 class="text-2xl font-bold text-white">I need help</h2>
+                    </div>
+                    <p class="text-slate-400 mb-8">Join the waitlist to be the first to hire local teens for yard work, snow shoveling, or cleaning when we launch.</p>
+                </div>
+                
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+                    <!-- INJECTED ACCESS KEY HERE -->
+                    <input type="hidden" name="access_key" value="9c2f690a-a5e7-487b-855a-9080375f4e51">
+                    <input type="hidden" name="subject" value="New Resident Waitlist Signup - Tasktap">
+                    
+                    <div class="relative">
+                        <i class="ph ph-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                        <input type="text" name="name" placeholder="First Name" required class="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-900/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                    </div>
+                    <div class="relative">
+                        <i class="ph ph-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                        <input type="email" name="email" placeholder="Email Address" required class="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-900/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">Join Resident Waitlist</button>
+                </form>
+            </div>
+
+            <!-- Teen Card -->
+            <div class="glass-card p-10 rounded-3xl shadow-2xl flex flex-col justify-between transition hover:-translate-y-1 duration-300 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="ph-fill ph-lightning text-3xl text-purple-400"></i>
+                        <h2 class="text-2xl font-bold text-white">I want to earn</h2>
+                    </div>
+                    <p class="text-slate-400 mb-8">Sign up to get notified about paid micro-gigs in your neighborhood. You keep 100% of what you earn.</p>
+                </div>
+                
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4 relative z-10">
+                    <!-- INJECTED ACCESS KEY HERE -->
+                    <input type="hidden" name="access_key" value="9c2f690a-a5e7-487b-855a-9080375f4e51">
+                    <input type="hidden" name="subject" value="New Teen Waitlist Signup - Tasktap">
+                    
+                    <div class="relative">
+                        <i class="ph ph-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                        <input type="text" name="name" placeholder="First Name" required class="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-900/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition">
+                    </div>
+                    <div class="relative">
+                        <i class="ph ph-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                        <input type="email" name="email" placeholder="Email Address" required class="w-full pl-12 pr-4 py-4 rounded-xl bg-slate-900/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition">
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-4 rounded-xl transition shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]">Join Earner Waitlist</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ABOUT US VIEW -->
+    <section id="about-view" class="container mx-auto px-6 py-16 max-w-4xl z-10 relative hidden flex-grow">
+        <h2 class="text-4xl font-bold mb-8 text-white">About Tasktap</h2>
+        <div class="glass-card p-8 rounded-3xl mb-12">
+            <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                Tasktap was built to solve a simple problem in our local community: residents have everyday tasks they don't have time for, and local teenagers want to work hard and earn their own money. 
+            </p>
+            <p class="text-slate-300 text-lg leading-relaxed">
+                By bypassing the heavy commission structures of massive gig apps, we ensure that the money stays in the community. You get the help you need, and local youth get the entrepreneurial experience they deserve.
+            </p>
+        </div>
+
+        <!-- Founder Profile -->
+        <div class="glass-card p-8 rounded-3xl flex flex-col md:flex-row items-center gap-8">
+            <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-3xl font-bold text-white shadow-lg shrink-0">
+                AK
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold text-white mb-1">Ahyaan Khan</h3>
+                <p class="text-purple-400 font-medium mb-4">Founder & CEO</p>
+                <p class="text-slate-400 leading-relaxed">
+                    A 17-year-old student at Konepajan lukio in Espoo, building platforms to empower local youth with real earning opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- View Switcher Script -->
+    <script>
+        function switchView(view) {
+            const home = document.getElementById('home-view');
+            const about = document.getElementById('about-view');
+            
+            if(view === 'home') {
+                home.classList.remove('hidden');
+                home.classList.add('block', 'flex');
+                about.classList.add('hidden');
+                about.classList.remove('block');
+            } else if(view === 'about') {
+                about.classList.remove('hidden');
+                about.classList.add('block');
+                home.classList.add('hidden');
+                home.classList.remove('block', 'flex');
+            }
+        }
+    </script>
+</body>
+</html>
